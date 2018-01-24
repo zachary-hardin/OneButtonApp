@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var currentValue: Int = 50
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -20,7 +22,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showAlert() {
-        let alert = UIAlertController(title: "OUCH!", message: "Don't you know it's mean to hit people? ☹️", preferredStyle: .alert)
+        let message: String = "You scored \(currentValue)"
+        
+        let alert = UIAlertController(title: "Score:", message: message, preferredStyle: .alert)
         
         // UIAlertAction specifies the the action that the user can take. It's the
         // alert's button title.
@@ -29,6 +33,11 @@ class ViewController: UIViewController {
         alert.addAction(action)
         
         present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func sliderMoved(_ slider: UISlider) {
+        currentValue = Int(slider.value)
+        print("The value of the slider is now: \(Int(slider.value))")
     }
 }
 
